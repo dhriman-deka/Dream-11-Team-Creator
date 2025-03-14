@@ -1,0 +1,44 @@
+# Dream 11 Team Creator - Model Evaluation Report
+
+## Model Error Rates
+
+Error Rate = (Actual Points - Predicted Points) / Actual Points
+
+Table 1. Error percentages
+
+| Model | Error% |
+| --- | --- |
+| Catboost | 12.2 |
+| Xgboost | 12.3 |
+| Random_forest | 14.2 |
+
+The CatBoost model had the least error percentage and gave the most consistent results.
+Hence, the predicted points of the players obtained from this model were used for the selection process.
+
+
+## Team Comparison for Match: Mumbai Indians vs Chennai Super Kings
+
+Table 2. Team Comparison
+
+| Best 11 | Predicted 11 |
+| --- | --- |
+| AT Rayudu | DL Chahar |
+| RG Sharma | KH Pandya |
+| KA Pollard | JP Behrendorff |
+| SA Yadav | SA Yadav |
+| SL Malinga | SL Malinga |
+| HH Pandya | HH Pandya |
+| Imran Tahir | Imran Tahir |
+| KM Jadhav | KM Jadhav |
+| MM Sharma | MM Sharma |
+| MS Dhoni | MS Dhoni |
+| Q de Kock | Q de Kock |
+
+From the above comparison, the error rate was observed to be 12.3% for the match.
+
+
+## Error Percentages Across Matches
+
+| Lowest Error | Highest Error | Average Error% |
+| --- | --- | --- |
+| 12.0% | 18.6% | 15.3% |

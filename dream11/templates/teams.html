@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}Select Teams | Dream 11 Team Creator{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">Step 1: Select Teams</h4>
+    </div>
+    <div class="card-body">
+        <p class="lead">Choose the two teams playing in the match</p>
+        <form id="teamsForm" method="post" action="{{ url_for('teams') }}">
+            <div class="form-group">
+                <label for="team1">Team 1:</label>
+                <select class="form-control" id="team1" name="team1" required>
+                    <option value="" selected disabled>Select first team</option>
+                    {% for team in teams %}
+                    <option value="{{ team }}">{{ team }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="team2">Team 2:</label>
+                <select class="form-control" id="team2" name="team2" required>
+                    <option value="" selected disabled>Select second team</option>
+                    {% for team in teams %}
+                    <option value="{{ team }}">{{ team }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="alert alert-info">
+                <i class="fa fa-info-circle"></i> Select two different teams that are playing against each other in the match.
+            </div>
+            <button type="button" id="submitBtn" class="btn btn-primary">Next: Set Constraints</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Prevent selecting the same team twice
+    document.getElementById('team1').addEventListener('change', function() {
+        var team1 = this.value;
+        var team2Select = document.getElementById('team2');
+        
+        for (var i = 0; i < team2Select.options.length; i++) {
+            var option = team2Select.options[i];
+            if (option.value === team1) {
+                option.disabled = true;
+            } else if (option.value) {
+                option.disabled = false;
+            }
+        }
+    });
+    
+    document.getElementById('team2').addEventListener('change', function() {
+        var team2 = this.value;
+        var team1Select = document.getElementById('team1');
+        
+        for (var i = 0; i < team1Select.options.length; i++) {
+            var option = team1Select.options[i];
+            if (option.value === team2) {
+                option.disabled = true;
+            } else if (option.value) {
+                option.disabled = false;
+            }
+        }
+    });
+
+    // Add form submission handling
+    document.getElementById('submitBtn').addEventListener('click', function() {
+        var team1 = document.getElementById('team1').value;
+        var team2 = document.getElementById('team2').value;
+        
+        if (!team1 || !team2) {
+            alert('Please select both teams');
+            return;
+        }
+        
+        // Submit the form
+        document.getElementById('teamsForm').submit();
+    });
+</script>
+{% endblock %} 

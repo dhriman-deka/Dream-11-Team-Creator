@@ -1,0 +1,427 @@
+/* Custom styles for Dream 11 Team Creator */
+
+:root {
+    --dream11-red: #d13239;
+    --dream11-dark-red: #a82b2f;
+    --dream11-blue: #1a365d;
+    --dream11-light-blue: #4299e1;
+    --dream11-green: #25855a;
+    --dream11-yellow: #ecc94b;
+    --dream11-purple: #6b46c1;
+    --dream11-orange: #ed8936;
+    --dream11-black: #1a202c;
+    --dream11-gray: #e2e8f0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    background-image: linear-gradient(to bottom, #fff, #f0f0f0);
+    color: var(--dream11-black);
+}
+
+.navbar {
+    background-color: var(--dream11-red) !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: white !important;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.nav-link {
+    color: rgba(255,255,255,0.9) !important;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    color: white !important;
+    transform: translateY(-2px);
+}
+
+.container {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--dream11-blue);
+}
+
+.btn-primary {
+    background-color: var(--dream11-red);
+    border-color: var(--dream11-dark-red);
+}
+
+.btn-primary:hover {
+    background-color: var(--dream11-dark-red);
+    border-color: var(--dream11-dark-red);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.card {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+}
+
+.card-header {
+    background-color: var(--dream11-blue);
+    color: white;
+    font-weight: 600;
+}
+
+.team-header {
+    background-color: var(--dream11-red);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.player-card {
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.player-card .card-header {
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.player-role {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.role-batsman {
+    background-color: var(--dream11-red);
+}
+
+.role-bowler {
+    background-color: var(--dream11-green);
+}
+
+.role-all-rounder {
+    background-color: var(--dream11-orange);
+}
+
+.role-wicket-keeper {
+    background-color: var(--dream11-purple);
+}
+
+.captain-badge {
+    background-color: var(--dream11-yellow);
+    color: var(--dream11-black);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.captain-badge:before {
+    content: 'C';
+    background-color: white;
+    color: var(--dream11-red);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    line-height: 18px;
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+.vice-captain-badge {
+    background-color: var(--dream11-light-blue);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.vice-captain-badge:before {
+    content: 'VC';
+    background-color: white;
+    color: var(--dream11-blue);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    line-height: 18px;
+    margin-right: 5px;
+    font-weight: bold;
+    font-size: 0.6rem;
+}
+
+.team-summary {
+    background-color: #f8f9fe;
+    border-left: 4px solid var(--dream11-red);
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 0 10px 10px 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.steps-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.step {
+    width: 30%;
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.step::after {
+    content: '';
+    position: absolute;
+    top: 40px;
+    right: -35%;
+    width: 70%;
+    height: 2px;
+    background-color: var(--dream11-gray);
+    z-index: -1;
+}
+
+.step:last-child::after {
+    display: none;
+}
+
+.step-number {
+    display: block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background-color: var(--dream11-red);
+    color: white;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    font-weight: bold;
+    box-shadow: 0 3px 8px rgba(209, 50, 57, 0.3);
+}
+
+.step-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--dream11-blue);
+    font-size: 1.2rem;
+}
+
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--dream11-blue);
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* Form styles */
+.form-section {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 25px;
+}
+
+.form-section h4 {
+    border-bottom: 2px solid var(--dream11-gray);
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+    color: var(--dream11-red);
+    font-weight: 600;
+}
+
+.form-control {
+    border-radius: 8px;
+    border: 1px solid var(--dream11-gray);
+    padding: 10px 15px;
+}
+
+.form-control:focus {
+    border-color: var(--dream11-light-blue);
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+}
+
+/* Team selection page */
+.team-selection {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.team-option {
+    width: 48%;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.team-option:hover {
+    transform: translateY(-5px);
+}
+
+.team-logo {
+    max-width: 80px;
+    margin-bottom: 10px;
+}
+
+/* Result page */
+.selected-player {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 12px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.selected-player:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transform: translateX(5px);
+}
+
+.player-name {
+    font-weight: 600;
+    color: var(--dream11-blue);
+}
+
+.player-points {
+    margin-left: auto;
+    font-weight: bold;
+    color: var(--dream11-red);
+    background-color: rgba(209, 50, 57, 0.1);
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+.team-distribution {
+    display: flex;
+    margin-top: 15px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.team-count {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+}
+
+.team-count:first-child {
+    background-color: rgba(66, 153, 225, 0.1);
+}
+
+.team-count:last-child {
+    background-color: rgba(209, 50, 57, 0.1);
+}
+
+/* Player stats visualization */
+.stats-chart {
+    height: 300px;
+    margin-bottom: 30px;
+}
+
+.stats-card {
+    text-align: center;
+    padding: 15px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+}
+
+.stats-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--dream11-red);
+}
+
+.stats-label {
+    font-size: 0.9rem;
+    color: var(--dream11-blue);
+    margin-top: 5px;
+}
+
+/* Animated loading spinner */
+.loading-spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border-left-color: var(--dream11-red);
+    animation: spin 1s linear infinite;
+    margin: 40px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .steps-container {
+        flex-direction: column;
+    }
+    
+    .step {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .step::after {
+        display: none;
+    }
+    
+    .team-option {
+        width: 100%;
+    }
+    
+    .team-distribution {
+        flex-direction: column;
+    }
+} 

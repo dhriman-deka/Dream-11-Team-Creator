@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Error | Dream 11 Team Creator{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header bg-danger text-white">
+        <h4 class="mb-0">Error</h4>
+    </div>
+    <div class="card-body">
+        <div class="alert alert-danger">
+            <h5 class="alert-heading">{{ error_title }}</h5>
+            <p>{{ error_message }}</p>
+        </div>
+        
+        {% if suggestions %}
+        <div class="mt-4">
+            <h5>Suggestions:</h5>
+            <ul>
+                {% for suggestion in suggestions %}
+                <li>{{ suggestion }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        
+        <div class="mt-4">
+            {% if back_url %}
+            <a href="{{ back_url }}" class="btn btn-secondary">Go Back</a>
+            {% else %}
+            <a href="{{ url_for('index') }}" class="btn btn-primary">Return to Home</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %} 

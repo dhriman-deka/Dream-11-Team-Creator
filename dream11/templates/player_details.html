@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+{% block title %}Player Details | Dream 11 Team Creator{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">Player Details</h4>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">{{ player.name }}</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            <span class="player-role role-{{ player.role|lower|replace('_', '-') }}">{{ player.role|replace('_', ' ') }}</span>
+                            <span class="badge badge-secondary">{{ player.team }}</span>
+                        </p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Credits
+                                <span class="badge badge-primary badge-pill">{{ player.credits }}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Predicted Points
+                                <span class="badge badge-success badge-pill">{{ player.points }}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Selection %
+                                <span class="badge badge-info badge-pill">{{ player.selection_percentage }}%</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Performance Statistics</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            {% if player.role == 'BATSMAN' or player.role == 'ALL_ROUNDER' or player.role == 'WICKET_KEEPER' %}
+                            <div class="col-md-6">
+                                <h6>Batting Stats</h6>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Matches
+                                        <span>{{ player.stats.matches }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Runs
+                                        <span>{{ player.stats.runs }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Average
+                                        <span>{{ player.stats.batting_average }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Strike Rate
+                                        <span>{{ player.stats.strike_rate }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        50s / 100s
+                                        <span>{{ player.stats.fifties }} / {{ player.stats.hundreds }}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            {% endif %}
+                            
+                            {% if player.role == 'BOWLER' or player.role == 'ALL_ROUNDER' %}
+                            <div class="col-md-6">
+                                <h6>Bowling Stats</h6>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Wickets
+                                        <span>{{ player.stats.wickets }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Economy
+                                        <span>{{ player.stats.economy }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Bowling Average
+                                        <span>{{ player.stats.bowling_average }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        3+ Wicket Hauls
+                                        <span>{{ player.stats.three_plus_wickets }}</span>
+                                    </li>
+                                    {% if player.stats.is_spinner %}
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Bowling Type
+                                        <span class="badge badge-warning">Spinner</span>
+                                    </li>
+                                    {% else %}
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Bowling Type
+                                        <span class="badge badge-secondary">Pace</span>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="mt-4">
+                            <h6>Recent Form</h6>
+                            <div class="progress mb-3">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: {{ player.form_percentage }}%" aria-valuenow="{{ player.form_percentage }}" aria-valuemin="0" aria-valuemax="100">{{ player.form_percentage }}%</div>
+                            </div>
+                            
+                            <h6>Last 5 Matches</h6>
+                            <div class="row">
+                                {% for match in player.recent_matches %}
+                                <div class="col">
+                                    <div class="card text-center">
+                                        <div class="card-body p-2">
+                                            <h6 class="card-title">vs {{ match.opponent }}</h6>
+                                            <p class="card-text">{{ match.points }} pts</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-4">
+            <a href="{{ url_for('result') }}" class="btn btn-secondary">Back to Team</a>
+        </div>
+    </div>
+</div>
+{% endblock %} 

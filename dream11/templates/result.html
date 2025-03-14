@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Dream 11 Team | Dream 11 Team Creator{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">Your Dream 11 Team</h4>
+    </div>
+    <div class="card-body">
+        <div class="team-header">
+            <h5 class="mb-0">Match: {{ team1 }} vs {{ team2 }}</h5>
+        </div>
+        
+        <div class="team-summary">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Team Summary</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Total Credits Used
+                            <span class="badge badge-primary badge-pill">{{ total_credits }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Batsmen
+                            <span class="badge badge-danger badge-pill">{{ role_counts.batsman }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Bowlers
+                            <span class="badge badge-danger badge-pill">{{ role_counts.bowler }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            All-Rounders
+                            <span class="badge badge-danger badge-pill">{{ role_counts.all_rounder }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Wicket Keepers
+                            <span class="badge badge-danger badge-pill">{{ role_counts.wicket_keeper }}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h5>Team Distribution</h5>
+                    <div class="team-distribution">
+                        <div class="team-count">
+                            <h6>{{ team1 }}</h6>
+                            <div class="display-4">{{ team_counts[team1] }}</div>
+                        </div>
+                        <div class="team-count">
+                            <h6>{{ team2 }}</h6>
+                            <div class="display-4">{{ team_counts[team2] }}</div>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <h6>Captain</h6>
+                        <div class="captain-badge">{{ captain }}</div>
+                        <h6 class="mt-2">Vice-Captain</h6>
+                        <div class="vice-captain-badge">{{ vice_captain }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <h4 class="mt-4">Selected Players</h4>
+        
+        <div class="row">
+            {% for player in selected_team %}
+            <div class="col-md-4">
+                <div class="card player-card">
+                    <div class="card-header">
+                        {{ player.name }}
+                        {% if player.name == captain %}
+                        <span class="captain-badge float-right">C</span>
+                        {% elif player.name == vice_captain %}
+                        <span class="vice-captain-badge float-right">VC</span>
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            <span class="player-role role-{{ player.role|lower|replace('_', '-') }}">{{ player.role|replace('_', ' ') }}</span>
+                            <span class="badge badge-secondary">{{ player.team }}</span>
+                        </p>
+                        <div class="d-flex justify-content-between">
+                            <span>Credits: {{ player.credits }}</span>
+                            <span>Points: {{ player.points }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="mt-4">
+            <a href="{{ url_for('constraints') }}" class="btn btn-secondary">Adjust Constraints</a>
+            <a href="{{ url_for('teams') }}" class="btn btn-primary">Create New Team</a>
+            <button onclick="exportTeam()" class="btn btn-success">Export Team</button>
+        </div>
+    </div>
+</div>
+
+<script>
+function exportTeam() {
+    fetch("{{ url_for('export_team') }}")
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(data.message);
+            } else {
+                alert('Failed to export team');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Failed to export team');
+        });
+}
+</script>
+
+{% if alternative_teams %}
+<div class="card mt-4">
+    <div class="card-header bg-info text-white">
+        <h4 class="mb-0">Alternative Teams</h4>
+    </div>
+    <div class="card-body">
+        <p class="lead">Here are some alternative team combinations you might consider:</p>
+        
+        <div class="accordion" id="alternativeTeams">
+            {% for i, team in enumerate(alternative_teams) %}
+            <div class="card">
+                <div class="card-header" id="heading{{ i }}">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ i }}" aria-expanded="false" aria-controls="collapse{{ i }}">
+                            Alternative Team {{ i+1 }} (Total Points: {{ team.total_points }})
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapse{{ i }}" class="collapse" aria-labelledby="heading{{ i }}" data-parent="#alternativeTeams">
+                    <div class="card-body">
+                        <div class="row">
+                            {% for player in team.players %}
+                            <div class="col-md-4">
+                                <div class="selected-player">
+                                    <span>{{ player.name }} ({{ player.team }})</span>
+                                    <span class="player-role role-{{ player.role|lower|replace('_', '-') }}">{{ player.role|replace('_', ' ') }}</span>
+                                    <span class="player-points">{{ player.points }}</span>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="mt-3">
+                            <p><strong>Captain:</strong> <span class="captain-badge">{{ team.captain }}</span></p>
+                            <p><strong>Vice-Captain:</strong> <span class="vice-captain-badge">{{ team.vice_captain }}</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %} 

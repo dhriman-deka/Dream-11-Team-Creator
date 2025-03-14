@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}Home | Dream 11 Team Creator{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">Dream 11 Team Creator</h1>
+    <p class="lead">Create the optimal Dream 11 team using Machine Learning predictions based on player performance data.</p>
+    <hr class="my-4">
+    <p>This tool analyzes player statistics and uses Machine Learning to predict player performances and create the best possible team based on your constraints.</p>
+    <a href="{{ url_for('teams') }}" class="btn btn-primary btn-lg">Create Your Dream Team</a>
+</div>
+
+<div class="steps-container">
+    <div class="step">
+        <span class="step-number">1</span>
+        <h3 class="step-title">Select Teams</h3>
+        <p>Choose the two teams playing in the match for which you want to create a Dream 11 team.</p>
+    </div>
+    <div class="step">
+        <span class="step-number">2</span>
+        <h3 class="step-title">Set Constraints</h3>
+        <p>Customize team constraints like number of batsmen, bowlers, all-rounders, and specific players to include.</p>
+    </div>
+    <div class="step">
+        <span class="step-number">3</span>
+        <h3 class="step-title">Get Results</h3>
+        <p>Our ML algorithm will select the optimal team based on player performances and your constraints.</p>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">Features</h4>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <h5>Machine Learning Predictions</h5>
+                <p>Uses advanced ML models (CatBoost, XGBoost, Random Forest) to predict player points based on historical performance.</p>
+                
+                <h5>Player Role Analysis</h5>
+                <p>Automatically assigns roles (batsman, bowler, all-rounder, wicket-keeper) based on player statistics.</p>
+            </div>
+            <div class="col-md-6">
+                <h5>Customizable Constraints</h5>
+                <p>Set your own constraints for team selection, including specific players to include or exclude.</p>
+                
+                <h5>Captain & Vice-Captain Selection</h5>
+                <p>Automatically suggests the best captain and vice-captain for your Dream 11 team.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="text-center mb-4">
+    <a href="{{ url_for('teams') }}" class="btn btn-success btn-lg">Get Started</a>
+</div>
+{% endblock %} 
